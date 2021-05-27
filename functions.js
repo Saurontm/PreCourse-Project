@@ -10,16 +10,22 @@
  */
 
 /**
- * sumOdds(numbers):
- * - receives an array of numbers
- * - returns the sum of only the ODD numbers
+ * sumOdds(string):
+ * - receives an array of string
+ * - returns the sum of only the ODD string
  *
  * e.g.
  * sumOdds([1, 2, 3, 4, 5, 6, 7, 8, 9]) -> 25
  * sumOdds([3, 7, 8, 15, 2, 1, 13]) -> 39
  */
-function sumOdds(numbers) {
-  // Your code here
+function sumOdds(string) {
+  let sum = 0;
+  for (let i = 0; i < string.length; i++){
+    if (string[i] % 2 === 1){
+      sum = sum + string[i];
+    }
+  }
+  return sum;
 }
 
 // console.log(sumOdds([3, 7, 8, 15, 2, 1, 13]));
@@ -37,15 +43,21 @@ function sumOdds(numbers) {
  * Hint: Use string methods to make it case-insensitive
  */
 function characterCount(string, c) {
-  // Your code here
+  let count = 0;
+  for (let i = 0; i < string.length; i++){
+    if (string[i].toUpperCase() === c.toUpperCase()){
+      count++;
+    }
+  }
+  return count;
 }
 
-// console.log(characterCount("Character Count is clever", "c"));
+//console.log(characterCount("Character Count is clever", "c"));
 
 /**
- * differences(numbers):
- * - receives an array of numbers
- * - returns an array that has the difference in the values of the numbers array.
+ * differences(string):
+ * - receives an array of string
+ * - returns an array that has the difference in the values of the string array.
  * - see example below for clarification.
  *
  * e.g.
@@ -57,16 +69,20 @@ function characterCount(string, c) {
  *
  * differences([11, 35, 52, 14, 56]) -> [24,  17, -38,  42]
  */
-function differences(numbers) {
-  // Your code here
+function differences(string) {
+  const diff = []
+  for (let i = 1; i < string.length; i++){
+    diff.push(parseInt(string[i])-parseInt(string[i-1]));
+  }
+  return diff;
 }
 
 // console.log(differences([11, 35, 52, 14, 56]));
 
 /**
- * largestIncrement(numbers):
- * - receives an array of numbers
- * - returns the largest difference between two consecutive numbers in the array
+ * largestIncrement(string):
+ * - receives an array of string
+ * - returns the largest difference between two consecutive string in the array
  * - see example below for clarification
  *
  * e.g.
@@ -79,25 +95,44 @@ function differences(numbers) {
  *
  * largestIncrement([11, 35, 52, 14, 56, 601, 777, 888, 999]) -> 545
  */
-function largestIncrement(numbers) {
-  // Your code here
+function largestIncrement(string) {
+  const array = differences(string);
+  let largest = 0;
+  for (let i = 0; i < array.length; i++){
+    if (array[i]>largest) {
+        largest = array[i];
+    }
+}
+return largest;
 }
 
 // console.log(largestIncrement([11, 35, 52, 14, 56, 601, 777, 888, 999]));
 
 /**
- * afterX(numbers, x):
- * - receives an array of numbers, and a number `x`.
- * - returns an array of every number in `numbers` that occurs after `x`.
+ * afterX(string, x):
+ * - receives an array of string, and a number `x`.
+ * - returns an array of every number in `string` that occurs after `x`.
  *
- * - assume there are no duplicate numbers.
+ * - assume there are no duplicate string.
  *
  * e.g.
  * afterX([1, 2, 3, 4, 5, 6, 7, 8, 9], 3) -> [4, 5, 6, 7, 8, 9]
  * afterX([11, 35, 52, 14, 56, 601, 777, 888, 999], 52) -> [14, 56, 601, 777, 888, 999]
  */
-function afterX(numbers, x) {
-  // Your code here
+function afterX(string, x) {
+  let found = false;
+  const array = []
+  for (let i = 0; i < string.length; i++){
+    if (parseInt(string[i]) === x){
+      found = true;
+      continue;
+    }
+
+    if (found){
+      array.push(string[i]);
+    }
+  }
+  return array;
 }
 
 // console.log(afterX([1, 2, 3, 4, 5, 6, 7, 8, 9], 3));
@@ -114,7 +149,7 @@ function afterX(numbers, x) {
  * Hint: Use string method .toUpperCase()
  */
 function abbreviate(firstName, lastName) {
-  // Your code here
+  return (firstName[0].toUpperCase()+lastName[0].toUpperCase());
 }
 
 // console.log(abbreviate("miss", "Stephane"));
@@ -130,14 +165,19 @@ function abbreviate(firstName, lastName) {
  *
  */
 function isUpperCase(string) {
-  // Your code here
+  for (let i = 0; i < string.length; i++){
+    if (string[i] === string[i].toLowerCase()){
+      return false;
+    }
+  }
+  return true;
 }
 
 // console.log(isUpperCase("JCREW"));
 
 /**
- * elementInArray(numbers, x):
- * - receives an array of numbers, and a number `x`.
+ * elementInArray(string, x):
+ * - receives an array of string, and a number `x`.
  * - returns true if `x` is found in the array, false otherwise
  *
  * e.g.
@@ -145,8 +185,13 @@ function isUpperCase(string) {
  * elementInArray([5, 6, 7], 8) -> false
  *
  */
-function elementInArray(numbers, x) {
-  // Your code here
+function elementInArray(string, x) {
+  for (let i = 0; i < string.length; i++){
+    if (parseInt(string[i]) === x){
+      return true;
+    }
+  }
+  return false;
 }
 
 // console.log(elementInArray([5, 6, 7], 8));
@@ -162,7 +207,7 @@ function elementInArray(numbers, x) {
  *
  */
 function reverseString(string) {
-  // Your code here
+  return string.split("").reverse().join("");
 }
 
 // console.log(reverseString("CODED"));
